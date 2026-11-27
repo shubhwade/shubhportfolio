@@ -109,50 +109,66 @@ export function Hero() {
         <GridBackground mx={mx} my={my} />
       </motion.div>
 
-      <motion.div style={{ y: yText }} className="relative mx-auto flex w-full max-w-[1240px] flex-1 flex-col justify-center px-4 pb-16 sm:px-8">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: EASE }}
-          className="flex items-center gap-3 text-sm font-medium text-ink-2"
-        >
-          <span className="h-px w-8 bg-ink/40" />
-          Shubh Wade · Financial Analyst, Mumbai
-        </motion.p>
+      <div className="relative mx-auto grid w-full max-w-[1240px] flex-1 items-center gap-14 px-4 pb-16 sm:px-8 lg:grid-cols-[1fr_minmax(0,380px)] lg:gap-20">
+        <motion.div style={{ y: yText }}>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: EASE }}
+            className="flex items-center gap-3 text-sm font-medium text-ink-2"
+          >
+            <span className="h-px w-8 bg-ink/40" />
+            Shubh Wade · Financial Analyst, Mumbai
+          </motion.p>
 
-        <h1 className="mt-8 max-w-[15ch] text-[clamp(44px,6.6vw,100px)] font-semibold leading-[.98] tracking-[-0.05em]">
-          <RevealText text="I turn financial statements" className="block" delay={0.15} />
-          <TexturedReveal text="into decisions." delay={0.4} />
-        </h1>
+          <h1 className="mt-8 max-w-[15ch] text-[clamp(44px,6.2vw,96px)] font-semibold leading-[.98] tracking-[-0.05em]">
+            <RevealText text="I turn financial statements" className="block" delay={0.15} />
+            <TexturedReveal text="into decisions." delay={0.4} />
+          </h1>
 
-        <div className="mt-12 flex flex-col gap-10 sm:mt-14 lg:flex-row lg:items-end lg:justify-between">
           <motion.p
             initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.75, ease: EASE }}
-            className="max-w-[460px] text-[17px] leading-relaxed text-ink-2"
+            className="mt-12 max-w-[460px] text-[17px] leading-relaxed text-ink-2 sm:mt-14"
           >
             Most recently a Finance Intern at Springer Capital. I also built Isoline, an open-source financial statement engine with more than 16,000 downloads.
           </motion.p>
+        </motion.div>
+
+        <div className="mx-auto w-full max-w-[380px] lg:mx-0">
+          <motion.figure
+            initial={{ clipPath: "inset(100% 0% 0% 0% round 28px)" }}
+            animate={{ clipPath: "inset(0% 0% 0% 0% round 28px)" }}
+            transition={{ duration: 1.3, delay: 0.35, ease: EASE }}
+            className="relative overflow-hidden rounded-[28px] bg-surface shadow-[0_40px_80px_-40px_rgba(20,20,19,.45)]"
+          >
+            <motion.img
+              src="assets/shubh-portrait.webp" alt="Shubh Wade" width={908} height={1280} decoding="async" fetchPriority="high"
+              initial={{ scale: 1.18 }} animate={{ scale: 1 }} transition={{ duration: 1.8, delay: 0.35, ease: EASE }}
+              className="aspect-[908/1280] w-full object-cover"
+            />
+            <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-inset ring-ink/10" />
+          </motion.figure>
 
           <motion.div
             initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.9, ease: EASE }}
-            className="flex flex-wrap items-center gap-3"
+            className="mt-5 grid grid-cols-[1fr_auto] items-center gap-3"
           >
-            <Magnetic strength={0.25}>
-              <Button asChild size="lg" className="pl-7 pr-2 hover:bg-ink hover:text-bg">
+            <Magnetic strength={0.2} className="w-full">
+              <Button asChild size="lg" className="w-full justify-between pl-6 pr-2 hover:bg-ink hover:text-bg">
                 <a href="#work">
                   View selected work
-                  <span className="ml-2 grid size-9 place-items-center rounded-full bg-bg text-ink transition-transform duration-500 ease-out-expo group-hover/btn:translate-x-1">
+                  <span className="grid size-9 place-items-center rounded-full bg-bg text-ink transition-transform duration-500 ease-out-expo group-hover/btn:translate-x-1">
                     <ArrowRight className="size-4" />
                   </span>
                 </a>
               </Button>
             </Magnetic>
-            <Button asChild size="lg" variant="ghost" className="px-5">
+            <Button asChild size="lg" variant="outline" className="px-5">
               <a href={RESUME} target="_blank" rel="noopener">
                 Résumé <ArrowUpRight className="transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
               </a>
             </Button>
           </motion.div>
         </div>
-      </motion.div>
+      </div>
 
       <motion.div
         initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1, delay: 1.2 }}
