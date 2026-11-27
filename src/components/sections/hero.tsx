@@ -104,12 +104,12 @@ export function Hero() {
   }
 
   return (
-    <section ref={ref} id="top" onPointerMove={track} onPointerLeave={() => { mx.set(-999); my.set(-999); }} className="relative flex min-h-[92svh] flex-col overflow-hidden pt-32 sm:pt-36">
+    <section ref={ref} id="top" onPointerMove={track} onPointerLeave={() => { mx.set(-999); my.set(-999); }} className="relative flex min-h-[92svh] flex-col overflow-hidden pt-24 sm:pt-28">
       <motion.div className="absolute inset-0" style={{ y: yBg, opacity: fade }}>
         <GridBackground mx={mx} my={my} />
       </motion.div>
 
-      <div className="relative mx-auto grid w-full max-w-[1240px] flex-1 content-start items-start gap-14 px-4 pb-16 pt-4 sm:px-8 lg:grid-cols-[1fr_minmax(0,380px)] lg:gap-20 lg:pt-6">
+      <div className="relative mx-auto grid w-full max-w-[1240px] flex-1 content-start items-start gap-14 px-4 pb-16 pt-4 sm:px-8 lg:grid-cols-[1fr_auto] lg:gap-20 lg:pt-6">
         <motion.div style={{ y: yText }} className="lg:pt-1">
           <motion.p
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: EASE }}
@@ -132,7 +132,7 @@ export function Hero() {
           </motion.p>
         </motion.div>
 
-        <div className="mx-auto w-full max-w-[380px] lg:mx-0">
+        <div className="mx-auto w-full max-w-[380px] lg:mx-0 lg:w-[min(360px,max(300px,calc((100svh-236px)*0.709)))] lg:max-w-none lg:justify-self-end">
           <motion.figure
             initial={{ clipPath: "inset(100% 0% 0% 0% round 28px)" }}
             animate={{ clipPath: "inset(0% 0% 0% 0% round 28px)" }}
@@ -152,16 +152,16 @@ export function Hero() {
             className="mt-5 grid grid-cols-[1fr_auto] items-center gap-3"
           >
             <Magnetic strength={0.2} className="w-full">
-              <Button asChild size="lg" className="w-full justify-between pl-6 pr-2 hover:bg-ink hover:text-bg">
+              <Button asChild className="h-12 w-full justify-between pl-5 pr-1.5 hover:bg-ink hover:text-bg">
                 <a href="#work">
-                  View selected work
+                  View my work
                   <span className="grid size-9 place-items-center rounded-full bg-bg text-ink transition-transform duration-500 ease-out-expo group-hover/btn:translate-x-1">
                     <ArrowRight className="size-4" />
                   </span>
                 </a>
               </Button>
             </Magnetic>
-            <Button asChild size="lg" variant="outline" className="px-5">
+            <Button asChild variant="outline" className="h-12 px-4">
               <a href={RESUME} target="_blank" rel="noopener">
                 Résumé <ArrowUpRight className="transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
               </a>
