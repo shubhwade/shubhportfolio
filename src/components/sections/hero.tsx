@@ -109,8 +109,8 @@ export function Hero() {
         <GridBackground mx={mx} my={my} />
       </motion.div>
 
-      <div className="relative mx-auto grid w-full max-w-[1240px] flex-1 items-center gap-14 px-4 pb-16 sm:px-8 lg:grid-cols-[1fr_minmax(0,380px)] lg:gap-20">
-        <motion.div style={{ y: yText }}>
+      <div className="relative mx-auto grid w-full max-w-[1240px] flex-1 content-start items-start gap-14 px-4 pb-16 pt-4 sm:px-8 lg:grid-cols-[1fr_minmax(0,380px)] lg:gap-20 lg:pt-6">
+        <motion.div style={{ y: yText }} className="lg:pt-1">
           <motion.p
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: EASE }}
             className="flex items-center gap-3 text-sm font-medium text-ink-2"
