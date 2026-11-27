@@ -109,7 +109,7 @@ export function Hero() {
         <GridBackground mx={mx} my={my} />
       </motion.div>
 
-      <div className="relative mx-auto grid w-full max-w-[1240px] flex-1 content-start items-start gap-14 px-4 pb-16 pt-4 sm:px-8 lg:grid-cols-[1fr_auto] lg:gap-20 lg:pt-6">
+      <div className="relative mx-auto grid w-full max-w-[1240px] flex-1 content-start items-start gap-14 px-4 pb-16 pt-4 sm:px-8 lg:grid-cols-[1.15fr_1fr] lg:gap-20 lg:pt-6">
         <motion.div style={{ y: yText }} className="lg:pt-1">
           <motion.p
             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: EASE }}
@@ -132,7 +132,7 @@ export function Hero() {
           </motion.p>
         </motion.div>
 
-        <div className="mx-auto w-full max-w-[380px] lg:mx-0 lg:w-[min(360px,max(300px,calc((100svh-236px)*0.709)))] lg:max-w-none lg:justify-self-end">
+        <div className="mx-auto w-full max-w-[380px] lg:mx-0 lg:w-[min(360px,max(300px,calc((100svh-236px)*0.709)))] lg:max-w-none lg:justify-self-center">
           <motion.figure
             initial={{ clipPath: "inset(100% 0% 0% 0% round 28px)" }}
             animate={{ clipPath: "inset(0% 0% 0% 0% round 28px)" }}
