@@ -1,19 +1,18 @@
-import { BarChart3, Calculator, Database, FileText } from "lucide-react";
 import { FadeIn, RevealText, SpotlightCard } from "@/components/motion";
 
 const GROUPS = [
   {
-    icon: Calculator, title: "Financial analysis", span: "lg:col-span-2", dark: true,
+    title: "Financial analysis", span: "lg:col-span-2", dark: true,
     items: [["Financial statement analysis", "Isoline"], ["Piotroski · Altman · Beneish", "Isoline"], ["DCF & valuation multiples", "Isoline"], ["Yield, duration & bond pricing", "YieldLens"], ["XIRR, SIP & fund analytics", "IndiaFin"]],
   },
   {
-    icon: BarChart3, title: "Reporting & BI", items: [["Power BI dashboards", "Springer"], ["Tableau", ""], ["Plotly · Streamlit", "IndiaFin"], ["KPI design", "Springer"]],
+    title: "Reporting & BI", items: [["Power BI dashboards", "Springer"], ["Tableau", ""], ["Plotly · Streamlit", "IndiaFin"], ["KPI design", "Springer"]],
   },
   {
-    icon: Database, title: "Data", items: [["SQL: CTEs, window functions", ""], ["Python: Pandas, NumPy", ""], ["Advanced Excel", ""], ["R", ""]],
+    title: "Data", items: [["SQL: CTEs, window functions", ""], ["Python: Pandas, NumPy", ""], ["Advanced Excel", ""], ["R", ""]],
   },
   {
-    icon: FileText, title: "Business analysis", span: "lg:col-span-2",
+    title: "Business analysis", span: "lg:col-span-2",
     items: [["Requirements & BRDs", "Springer"], ["Data validation & root cause", "Springer"], ["Budgeting & reconciliation", "ZEPHYR ’26"], ["Process & gap mapping", "Springer"]],
   },
 ] as const;
@@ -27,7 +26,7 @@ export function Skills() {
             <FadeIn><span className="label text-accent-ink">Skills</span></FadeIn>
             <RevealText as="h2" text="What I bring to the desk." className="mt-4 text-[clamp(38px,5.4vw,76px)] font-semibold leading-[.98] tracking-[-0.05em]" />
           </div>
-          <FadeIn delay={0.15}><p className="max-w-sm text-ink-2">Each skill is tagged with the project or role where I used it.</p></FadeIn>
+          <FadeIn delay={0.15}><p className="max-w-sm text-ink-2">Finance first, tools second: from a raw annual report to a model to a dashboard someone actually opens.</p></FadeIn>
         </div>
         <div className="grid gap-4 lg:grid-cols-3">
           {GROUPS.map((g, gi) => {
@@ -35,16 +34,13 @@ export function Skills() {
             return (
               <FadeIn key={g.title} delay={gi * 0.08} className={"span" in g ? g.span : ""}>
                 <SpotlightCard dark={dark} className="h-full p-7 sm:p-8">
-                  <div className="flex items-center gap-3">
-                    <span className={`grid size-10 place-items-center rounded-xl ${dark ? "bg-accent text-white" : "bg-accent-soft text-accent-ink"}`}><g.icon className="size-5" /></span>
-                    <h3 className={`text-xl font-semibold tracking-[-0.02em] ${dark ? "text-white" : ""}`}>{g.title}</h3>
+                  <div className={`flex items-baseline justify-between gap-4 text-sm tabular ${dark ? "text-ash" : "text-muted"}`}>
+                    <span>0{gi + 1}</span>
                   </div>
+                  <h3 className={`mt-6 text-2xl font-semibold tracking-[-0.03em] ${dark ? "text-white" : ""}`}>{g.title}</h3>
                   <ul className={`mt-7 ${"span" in g ? "grid gap-x-10 sm:grid-cols-2" : ""}`}>
-                    {g.items.map(([s, proof]) => (
-                      <li key={s} className={`flex items-center justify-between gap-4 border-b py-3 text-[15px] ${dark ? "border-graphite-line text-bone" : "border-line text-ink-2"}`}>
-                        <span>{s}</span>
-                        {proof && <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-semibold ${dark ? "bg-graphite-2 text-accent" : "bg-bg text-accent-ink"}`}>{proof}</span>}
-                      </li>
+                    {g.items.map(([s]) => (
+                      <li key={s} className={`border-b py-3 text-[15px] ${dark ? "border-graphite-line text-bone" : "border-line text-ink-2"}`}>{s}</li>
                     ))}
                   </ul>
                 </SpotlightCard>

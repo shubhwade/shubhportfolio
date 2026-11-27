@@ -1,12 +1,12 @@
-import { ArrowUpRight, Award, GraduationCap } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { FadeIn, RevealText } from "@/components/motion";
 import { cn } from "@/lib/utils";
 
 const CREDS = [
-  { from: "Yale University · Coursera", title: "Financial Markets", sub: "Taught by Robert Shiller", href: "https://www.coursera.org/account/accomplishments/verify/HM8W2TTFJTYB", icon: Award },
-  { from: "365 Careers · Udemy", title: "Data Science Bootcamp", sub: "Statistics, Python, machine learning", href: "https://www.udemy.com/certificate/UC-f2181c0d-f29d-46eb-be6a-f9b7754cdcc2/", icon: Award },
-  { from: "Mumbai University · TCET", title: "B.E. Information Technology", sub: "CGPA 9.0 / 10 · 2024–28", icon: GraduationCap },
-  { from: "HackerRank", title: "SQL (Advanced) · R", sub: "Certified", icon: Award },
+  { from: "Yale University · Coursera", title: "Financial Markets", sub: "Taught by Robert Shiller", href: "https://www.coursera.org/account/accomplishments/verify/HM8W2TTFJTYB" },
+  { from: "365 Careers · Udemy", title: "Data Science Bootcamp", sub: "Statistics, Python, machine learning", href: "https://www.udemy.com/certificate/UC-f2181c0d-f29d-46eb-be6a-f9b7754cdcc2/" },
+  { from: "Mumbai University · TCET", title: "B.E. Information Technology", sub: "CGPA 9.0 / 10 · 2024–28" },
+  { from: "HackerRank", title: "SQL (Advanced) · R", sub: "Certified" },
 ];
 
 export function Credentials() {
@@ -26,14 +26,14 @@ export function Credentials() {
                     c.href && "hover:-translate-y-1.5 hover:border-ink hover:bg-ink hover:text-bg hover:shadow-[0_30px_60px_-30px_rgba(20,20,19,.6)]")}
                 >
                   <div className="flex items-start justify-between">
-                    <span className={cn("grid size-10 place-items-center rounded-xl bg-bg text-ink transition-colors duration-500", c.href && "group-hover:bg-accent group-hover:text-white")}><c.icon className="size-5" /></span>
-                    {c.href && <ArrowUpRight className="size-5 text-muted transition-all duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent" />}
+                    <span className={cn("text-sm text-muted tabular transition-colors duration-500", c.href && "group-hover:text-ash")}>0{i + 1}</span>
+                    {c.href && <ArrowUpRight className="size-5 text-muted transition-all duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-bg" />}
                   </div>
                   <div className="pt-12">
                     <div className={cn("text-xs font-medium text-muted transition-colors duration-500", c.href && "group-hover:text-ash")}>{c.from}</div>
                     <h3 className="mt-2 text-xl font-semibold leading-tight tracking-[-0.02em]">{c.title}</h3>
                     <p className={cn("mt-1.5 text-sm text-muted transition-colors duration-500", c.href && "group-hover:text-bone/70")}>{c.sub}</p>
-                    {c.href && <span className="mt-4 inline-block text-sm font-semibold text-accent-ink transition-colors duration-500 group-hover:text-accent">Verify credential</span>}
+                    {c.href && <span className="mt-4 inline-block text-sm font-medium underline decoration-line underline-offset-4 transition-colors duration-500 group-hover:decoration-ash">Verify credential</span>}
                   </div>
                 </Tag>
               </FadeIn>
