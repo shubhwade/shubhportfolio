@@ -27,8 +27,18 @@ export function Contact() {
         <div className="pointer-events-none absolute -right-40 -top-40 size-[520px] rounded-full bg-accent/25 blur-[120px]" />
         <div className="relative px-6 pb-8 pt-16 sm:px-12 sm:pt-24 lg:px-16">
           <span className="label text-accent">Contact</span>
-          <motion.h2 style={{ x }} className="mt-6 whitespace-nowrap text-[clamp(64px,13vw,200px)] font-semibold leading-[.88] tracking-[-0.06em] text-white">
-            Let's talk<span className="text-accent">.</span>
+          <motion.h2 aria-label="Let's talk." style={{ x }} className="mt-6 whitespace-nowrap text-[clamp(64px,13vw,200px)] font-semibold leading-[.88] tracking-[-0.06em] text-white">
+            {"Let's talk".split("").map((ch, i) => (
+              <motion.span
+                key={i}
+                className="inline-block"
+                whileHover={{ y: "-0.12em", color: "#ff5b1f" }}
+                transition={{ type: "spring", stiffness: 400, damping: 12 }}
+              >
+                {ch === " " ? "\u00a0" : ch}
+              </motion.span>
+            ))}
+            <motion.span className="inline-block text-accent" animate={{ scale: [1, 1.25, 1] }} transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}>.</motion.span>
           </motion.h2>
           <div className="mt-12 grid items-end gap-10 lg:grid-cols-[1fr_auto]">
             <p className="max-w-md text-lg leading-relaxed text-bone/75">

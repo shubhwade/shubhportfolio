@@ -97,6 +97,7 @@ export function Hero() {
   const yText = useTransform(scrollYProgress, [0, 1], [0, -70]);
   const yBg = useTransform(scrollYProgress, [0, 1], [0, 120]);
   const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
+  const yImg = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
   const mx = useMotionValue(-999), my = useMotionValue(-999);
   function track(e: React.PointerEvent<HTMLElement>) {
     const b = e.currentTarget.getBoundingClientRect();
@@ -128,7 +129,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, delay: 0.75, ease: EASE }}
             className="mt-12 max-w-[460px] text-[17px] leading-relaxed text-ink-2 sm:mt-14"
           >
-            Most recently a Finance Intern at Springer Capital. I also built Isoline, an open-source financial statement engine with more than 16,000 downloads.
+            Currently a Project Intern in Indian fixed income at Baroda BNP Paribas Mutual Fund, after finance internships at Kimatsu India and Springer Capital. I also built Isoline, an open-source financial statement engine with 17,500+ downloads.
           </motion.p>
         </motion.div>
 
@@ -141,7 +142,8 @@ export function Hero() {
           >
             <motion.img
               src="assets/shubh-portrait.webp" alt="Shubh Wade" width={908} height={1280} decoding="async" fetchPriority="high"
-              initial={{ scale: 1.18 }} animate={{ scale: 1 }} transition={{ duration: 1.8, delay: 0.35, ease: EASE }}
+              initial={{ scale: 1.22 }} animate={{ scale: 1.08 }} transition={{ duration: 1.8, delay: 0.35, ease: EASE }}
+              style={{ y: yImg }}
               className="aspect-[908/1280] w-full object-cover"
             />
             <div className="pointer-events-none absolute inset-0 rounded-[28px] ring-1 ring-inset ring-ink/10" />
@@ -175,7 +177,7 @@ export function Hero() {
         className="relative mx-auto w-full max-w-[1240px] px-4 sm:px-8"
       >
         <div className="mb-10 flex items-center justify-between border-t border-line py-5 text-sm text-muted sm:mb-14">
-          <span>Equity research · Valuation · Financial reporting</span>
+          <span>Fixed income · Corporate finance · Financial reporting</span>
           <span className="hidden items-center gap-3 sm:flex">
             Scroll
             <span className="relative h-8 w-px overflow-hidden bg-line">

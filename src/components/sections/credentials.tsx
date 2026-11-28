@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 const CREDS = [
   { from: "Yale University · Coursera", title: "Financial Markets", sub: "Taught by Robert Shiller", href: "https://www.coursera.org/account/accomplishments/verify/HM8W2TTFJTYB" },
   { from: "365 Careers · Udemy", title: "Data Science Bootcamp", sub: "Statistics, Python, machine learning", href: "https://www.udemy.com/certificate/UC-f2181c0d-f29d-46eb-be6a-f9b7754cdcc2/" },
-  { from: "Mumbai University · TCET", title: "B.E. Information Technology", sub: "CGPA 9.0 / 10 · 2024–28" },
-  { from: "HackerRank", title: "SQL (Advanced) · R", sub: "Certified" },
+  { from: "Mumbai University · TCET", title: "B.E. Information Technology", sub: "CGPA 9.0 / 10 · Business Development & Finance · 2024–28" },
+  { from: "HackerRank", title: "SQL & R", sub: "SQL (Advanced) · R (Intermediate)" },
 ];
 
 export function Credentials() {
