@@ -14,8 +14,8 @@ type Project = {
 const PROJECTS: Project[] = [
   {
     name: "Isoline", sector: "Equity research · Open source",
-    blurb: "Scores any listed company for financial health, earnings quality and manipulation risk, including Piotroski, Altman and Beneish, DuPont ROE, ROIC and a DCF. It then writes a print-ready report that explains every number in plain English.",
-    metric: "16.7k+", metricLabel: "downloads on PyPI", tags: ["Python", "Financial statements", "Valuation", "Forensic accounting"],
+    blurb: "A Python package and six-command CLI that analyses the financial statements of any listed stock: valuation (P/E, P/B, EV/EBITDA), financial health (Piotroski F-score, Altman Z-score) and earnings quality (Beneish M-score). It adds peer comparison, sector screening, rule-based analyst briefs and an MCP server for AI tools.",
+    metric: "17.5k+", metricLabel: "downloads · 25+ releases", tags: ["Python", "Financial statements", "Valuation", "Open source"],
     links: [{ label: "Visit site", href: "https://isolinee.vercel.app", primary: true }, { label: "PyPI", href: "https://pypi.org/project/isoline/" }, { label: "GitHub", href: "https://github.com/shubhwade/isoline" }],
     Viz: ScoreDials,
   },

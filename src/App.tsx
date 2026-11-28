@@ -10,11 +10,12 @@ import { Experience } from "@/components/sections/experience";
 import { Skills } from "@/components/sections/skills";
 import { Credentials } from "@/components/sections/credentials";
 import { Contact } from "@/components/sections/contact";
+import { CursorRing } from "@/components/motion";
 
 export default function App() {
   React.useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    const lenis = new Lenis({ duration: 1.15, smoothWheel: true, anchors: { offset: -88 } });
+    const lenis = new Lenis({ lerp: 0.085, smoothWheel: true, wheelMultiplier: 0.95, anchors: { offset: -88 } });
     let id = 0;
     const raf = (t: number) => { lenis.raf(t); id = requestAnimationFrame(raf); };
     id = requestAnimationFrame(raf);
@@ -23,6 +24,7 @@ export default function App() {
 
   return (
     <TooltipProvider delayDuration={150}>
+      <CursorRing />
       <Nav />
       <main>
         <Hero />

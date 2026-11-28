@@ -1,13 +1,13 @@
-import { FadeIn, Marquee, NumberTicker } from "@/components/motion";
+import { FadeIn, NumberTicker, VelocityMarquee } from "@/components/motion";
 
 const STATS = [
-  { v: 16.7, d: 1, s: "k+", label: "Isoline downloads on PyPI" },
-  { v: 5, d: 0, s: "", label: "Live finance products" },
-  { v: 7, d: 0, s: "k+", label: "ZEPHYR ’26 footfall" },
+  { v: 17.5, d: 1, s: "k+", label: "Isoline downloads on PyPI" },
+  { v: 3, d: 0, s: "", label: "Finance internships, 2026–27" },
+  { v: 25, d: 0, s: "+", label: "Isoline releases shipped" },
   { v: 9.0, d: 1, s: "", label: "CGPA out of 10" },
 ];
 
-const TOOLS = ["Financial statements", "DCF", "Power BI", "SQL", "Piotroski F", "Python", "Altman Z″", "Excel", "Beneish M", "Tableau", "XIRR", "Duration", "Pandas", "BRDs"];
+const TOOLS = ["Financial statements", "Fixed income", "Power BI", "SQL", "Reconciliation", "Piotroski F", "Python", "Altman Z″", "Excel", "Beneish M", "Tableau", "XIRR", "Valuation", "Pandas"];
 
 export function Stats() {
   return (
@@ -25,13 +25,13 @@ export function Stats() {
         </div>
       </div>
       <div className="mt-16 sm:mt-20">
-        <Marquee duration={45}>
+        <VelocityMarquee>
           {TOOLS.map((t) => (
             <span key={t} className="flex items-center gap-12 text-[clamp(28px,3.6vw,48px)] font-semibold tracking-[-0.04em] text-ink/85">
               {t}<span className="size-2.5 rotate-45 bg-accent" />
             </span>
           ))}
-        </Marquee>
+        </VelocityMarquee>
       </div>
     </section>
   );

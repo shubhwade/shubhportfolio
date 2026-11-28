@@ -1,5 +1,5 @@
 import * as React from "react";
-import { motion, useInView, useMotionValue, useSpring, useTransform, useReducedMotion, type Variants } from "motion/react";
+import { motion, useAnimationFrame, useInView, useMotionValue, useScroll, useSpring, useTransform, useReducedMotion, useVelocity, type Variants } from "motion/react";
 import { cn } from "@/lib/utils";
 
 /* Word-by-word reveal with blur, for headlines */
@@ -101,5 +101,76 @@ export function Marquee({ children, className, duration = 40 }: { children: Reac
         </div>
       ))}
     </div>
+  );
+}
+
+/* Marquee whose speed and lean respond to scroll velocity */
+export function VelocityMarquee({ children, baseVelocity = -2.2, className }: { children: React.ReactNode; baseVelocity?: number; className?: string }) {
+  const reduce = useReducedMotion();
+  const { scrollY } = useScroll();
+  const velocity = useVelocity(scrollY);
+  const smooth = useSpring(velocity, { damping: 50, stiffness: 300 });
+  const factor = useTransform(smooth, [-1500, 0, 1500], [-4, 0, 4], { clamp: false });
+  const skew = useTransform(smooth, [-2000, 0, 2000], [6, 0, -6]);
+  const base = useMotionValue(0);
+  const dir = React.useRef(1);
+  const x = useTransform(base, (v) => `${wrap(-50, 0, v)}%`);
+  useAnimationFrame((_, delta) => {
+    if (reduce) return;
+    let move = dir.current * baseVelocity * (delta / 1000);
+    const f = factor.get();
+    if (f < 0) dir.current = -1; else if (f > 0) dir.current = 1;
+    move += dir.current * move * f;
+    base.set(base.get() + move);
+  });
+  return (
+    <div className={cn("overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]", className)}>
+      <motion.div className="flex w-max flex-nowrap" style={{ x, skewX: skew }}>
+        <div className="flex shrink-0 items-center gap-12 pr-12">{children}</div>
+        <div aria-hidden className="flex shrink-0 items-center gap-12 pr-12">{children}</div>
+      </motion.div>
+    </div>
+  );
+}
+
+function wrap(min: number, max: number, v: number) {
+  const r = max - min;
+  return ((((v - min) % r) + r) % r) + min;
+}
+
+/* Soft trailing cursor ring for fine pointers; grows over interactive elements */
+export function CursorRing() {
+  const reduce = useReducedMotion();
+  const [enabled, setEnabled] = React.useState(false);
+  const [state, setState] = React.useState<"idle" | "link" | "hidden">("hidden");
+  const x = useMotionValue(-100), y = useMotionValue(-100);
+  const sx = useSpring(x, { stiffness: 420, damping: 38, mass: 0.6 });
+  const sy = useSpring(y, { stiffness: 420, damping: 38, mass: 0.6 });
+
+  React.useEffect(() => {
+    const fine = window.matchMedia("(pointer: fine)").matches;
+    if (!fine || reduce) return;
+    setEnabled(true);
+    const move = (e: PointerEvent) => {
+      x.set(e.clientX); y.set(e.clientY);
+      const t = e.target as HTMLElement | null;
+      setState(t?.closest("a, button, [role='tab'], input, textarea") ? "link" : "idle");
+    };
+    const leave = () => setState("hidden");
+    window.addEventListener("pointermove", move, { passive: true });
+    document.documentElement.addEventListener("pointerleave", leave);
+    return () => { window.removeEventListener("pointermove", move); document.documentElement.removeEventListener("pointerleave", leave); };
+  }, [reduce, x, y]);
+
+  if (!enabled) return null;
+  const size = state === "link" ? 56 : 28;
+  return (
+    <motion.div
+      aria-hidden
+      className="pointer-events-none fixed left-0 top-0 z-[60] rounded-full border border-ink/50 mix-blend-difference"
+      style={{ x: sx, y: sy, translateX: "-50%", translateY: "-50%", borderColor: "#fff" }}
+      animate={{ width: size, height: size, opacity: state === "hidden" ? 0 : state === "link" ? 0.9 : 0.55, backgroundColor: state === "link" ? "rgba(255,255,255,1)" : "rgba(255,255,255,0)" }}
+      transition={{ type: "spring", stiffness: 300, damping: 26 }}
+    />
   );
 }

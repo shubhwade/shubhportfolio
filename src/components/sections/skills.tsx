@@ -3,17 +3,17 @@ import { FadeIn, RevealText, SpotlightCard } from "@/components/motion";
 const GROUPS = [
   {
     title: "Financial analysis", span: "lg:col-span-2", dark: true,
-    items: [["Financial statement analysis", "Isoline"], ["Piotroski · Altman · Beneish", "Isoline"], ["DCF & valuation multiples", "Isoline"], ["Yield, duration & bond pricing", "YieldLens"], ["XIRR, SIP & fund analytics", "IndiaFin"]],
+    items: [["Financial statement analysis", ""], ["Valuation ratios", ""], ["Piotroski · Altman · Beneish", ""], ["Reconciliation", ""], ["XIRR · CAGR", ""], ["Indian fixed income", ""]],
   },
   {
-    title: "Reporting & BI", items: [["Power BI dashboards", "Springer"], ["Tableau", ""], ["Plotly · Streamlit", "IndiaFin"], ["KPI design", "Springer"]],
+    title: "Reporting & visualisation", items: [["Power BI", ""], ["Tableau", ""], ["Plotly · Streamlit", ""], ["Excel dashboards", ""]],
   },
   {
-    title: "Data", items: [["SQL: CTEs, window functions", ""], ["Python: Pandas, NumPy", ""], ["Advanced Excel", ""], ["R", ""]],
+    title: "Data analysis", items: [["SQL: CTEs, window functions", ""], ["Python: Pandas, NumPy, SciPy", ""], ["Advanced Excel", ""], ["R", ""]],
   },
   {
-    title: "Business analysis", span: "lg:col-span-2",
-    items: [["Requirements & BRDs", "Springer"], ["Data validation & root cause", "Springer"], ["Budgeting & reconciliation", "ZEPHYR ’26"], ["Process & gap mapping", "Springer"]],
+    title: "Analytical methods", span: "lg:col-span-2",
+    items: [["Data cleaning & EDA", ""], ["KPI reporting", ""], ["Descriptive statistics", ""], ["Forecasting", ""], ["Root-cause analysis", ""], ["Process documentation", ""]],
   },
 ] as const;
 

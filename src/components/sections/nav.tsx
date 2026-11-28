@@ -18,7 +18,13 @@ export function Nav() {
   const [hover, setHover] = React.useState<string | null>(null);
   const [scrolled, setScrolled] = React.useState(false);
   const { scrollY, scrollYProgress } = useScroll();
-  useMotionValueEvent(scrollY, "change", (v) => setScrolled(v > 24));
+  const [hidden, setHidden] = React.useState(false);
+  useMotionValueEvent(scrollY, "change", (v) => {
+    const prev = scrollY.getPrevious() ?? 0;
+    setScrolled(v > 24);
+    setHidden(v > 400 && v > prev + 2);
+    if (v < prev - 2) setHidden(false);
+  });
 
   React.useEffect(() => {
     const els = LINKS.map((l) => document.getElementById(l.id)).filter(Boolean) as HTMLElement[];
@@ -33,7 +39,7 @@ export function Nav() {
   const shown = hover ?? active;
 
   return (
-    <header className="fixed inset-x-0 top-0 z-40 px-3 pt-3 sm:px-5 sm:pt-4">
+    <motion.header animate={{ y: hidden ? -110 : 0 }} transition={{ type: "spring", stiffness: 260, damping: 32 }} className="fixed inset-x-0 top-0 z-40 px-3 pt-3 sm:px-5 sm:pt-4">
       <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-3">
         <a href="#top" className={cn("flex h-12 items-center gap-2.5 rounded-full border px-2 pr-4 transition-all duration-500", scrolled ? "border-line bg-surface/80 backdrop-blur-xl shadow-[0_8px_30px_-16px_rgba(20,20,19,.35)]" : "border-transparent")}>
           <span className="grid size-8 place-items-center rounded-full bg-ink text-[13px] font-bold tracking-tight text-bg">SW</span>
@@ -83,6 +89,6 @@ export function Nav() {
           </Sheet>
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 }
